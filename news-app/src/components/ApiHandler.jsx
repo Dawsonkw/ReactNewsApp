@@ -10,13 +10,13 @@ function ApiHandler() {
     const [results, setresults] = useState([]);
 
     useEffect(() => {
-        fetch("https://newsdata.io/api/1/news?apikey=pub_15728f28eec06467849664140706cae18be53&country=us,ca&language=en")
+        fetch("https://newsdata.io/api/1/news?apikey=pub_15728f28eec06467849664140706cae18be53&country=us,ca&language=en&q=mma")
         .then(res => res.json())
         .then(
             (result) => {
                 setIsLoaded(true);
                 setresults(result);
-                console.log(result);
+                console.log(result); //You can remove this after you get all the needed info from the API call situated. 
             },
             // Error Handling
             (error) => {
@@ -33,15 +33,19 @@ function ApiHandler() {
     } else{
         return (
             <div>
-                {results.results.map((result, index) => (
+                {results.results && results.results.filter(item => item.content).map((result, index) => (
                     <NewsApp
                         key={index}
                         title={result.title}
-                        imageURL={result.imageUrl}
+                        date={result.pubDate}
+                        imageURL={result.image_url}
                         creator={result.creator}
                         content={result.content}
+                        video={result.video_url}
                     />
+                    
                 ))}
+                {''}
             </div>
         )
     }
