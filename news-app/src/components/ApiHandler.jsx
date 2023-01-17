@@ -10,8 +10,14 @@ function ApiHandler() {
     const [results, setresults] = useState([]);
 
     useEffect(() => {
-        fetch("https://newsdata.io/api/1/news?apikey=pub_15728f28eec06467849664140706cae18be53&country=us,ca&language=en&q=mma")
-        .then(res => res.json())
+        const api1 = 'https://gnews.io/api/v4/top-headlines?token=b10afd6f87086db5fbb2457a2c296123&topic=sports&q=mma&lang=en'; //GNews.io API
+        const api2 = ' https://newsapi.org/v2/everything?q=mma&language=en&apiKey=2534edfeb2794486a6bab24956592237'; // newsAPI.org sports section
+        const headers = {'Set-Cookie': 'cookie-name=cookie-value; SameSite=Strict;'} 
+        const promises = [fetch(api1), fetch(api2)];
+        Promise.all(promises)
+        .then(responses => {
+            return Promise.all(responses.map(res => res.json()))
+        })
         .then(
             (result) => {
                 setIsLoaded(true);
@@ -32,20 +38,29 @@ function ApiHandler() {
         return <div>Loading...</div>
     } else{
         return (
-            <div>
-                {results.results && results.results.filter(item => item.content).map((result, index) => (
+            // So this is going to go through the results of the 2 api calls based off their index ([0] & [1] respectively). It's then gonna map the results 
+            <div className='grid grid-cols-3 gap-4'>
+                {results[0].articles && results[0].articles.map((result, index) => (
                     <NewsApp
                         key={index}
                         title={result.title}
-                        date={result.pubDate}
-                        imageURL={result.image_url}
-                        creator={result.creator}
-                        content={result.content}
+                        url={result.url}
+                        image={result.image}
+                        creator={result.source.name}
+                        content={result.description}
                         video={result.video_url}
                     />
-                    
                 ))}
-                {''}
+                {results[1].articles.map((result, index) => (
+                    <NewsApp 
+                        key={index}
+                        title={result.title}
+                        creator={result.author}
+                        content={result.description}
+                        urlToImage={result.urlToImage}
+                        url={result.url}
+                    />
+                ))}
             </div>
         )
     }
@@ -53,16 +68,3 @@ function ApiHandler() {
 
 export default ApiHandler;
 
-// https://newsdata.io/api/1/news?apikey=pub_15728f28eec06467849664140706cae18be53
-//  API key and get request. 
-// Use enpoints on https://newsdata.io/docs# to customize your data
-
-// pseudo Steps:
-// 1. make request using async / await and Fetch. This returns a promise
-// 
-// 2. Resolve promise (returns as JSON data) using the response object
-// 
-// 3. Handle Errors
-// 
-// 4. Utilize the returned promise data to make your site. 
-// 
