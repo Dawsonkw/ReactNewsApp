@@ -9,6 +9,7 @@ function ApiHandler() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [results, setresults] = useState([]);
 
+    // the useEffect hook is telling react that the component needs to do something after render. In this case the Api call is made, data is recieved and then applied to the structure that we have set in our other component that creates the page itself. 
     useEffect(() => {
         const api1 = 'https://gnews.io/api/v4/top-headlines?token=b10afd6f87086db5fbb2457a2c296123&topic=sports&q=mma&lang=en'; //GNews.io API
         const api2 = ' https://newsapi.org/v2/everything?q=mma&language=en&apiKey=2534edfeb2794486a6bab24956592237'; // newsAPI.org sports section
@@ -38,9 +39,11 @@ function ApiHandler() {
         return <div>Loading...</div>
     } else{
         return (
+            
             // So this is going to go through the results of the 2 api calls based off their index ([0] & [1] respectively). It's then gonna map the results 
-            <div className='grid grid-cols-3 gap-4'>
-                {results[0].articles && results[0].articles.map((result, index) => (
+            <div className='grid md:grid-cols-3 gap-4 sm:grid-cols-2'>
+                
+                {results[0].articles.map((result, index) => (
                     <NewsApp
                         key={index}
                         title={result.title}
@@ -62,6 +65,7 @@ function ApiHandler() {
                     />
                 ))}
             </div>
+            
         )
     }
 }
