@@ -41,17 +41,16 @@ function ApiHandler() {
         return (
             
             // So this is going to go through the results of the 2 api calls based off their index ([0] & [1] respectively). It's then gonna map the results 
-            <div className='grid md:grid-cols-3 gap-4 sm:grid-cols-2'>
+            <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-3 gap-x-6 sm:grid-cols-1 bg-yellowochre pt-2 '>
                 
                 {results[0].articles.map((result, index) => (
-                    <NewsApp
+                    <NewsApp 
                         key={index}
                         title={result.title}
                         url={result.url}
                         image={result.image}
                         creator={result.source.name}
                         content={result.description}
-                        video={result.video_url}
                     />
                 ))}
                 {results[1].articles.map((result, index) => (
