@@ -26,6 +26,6 @@ export default App
 // 
 // Figure out how to do the Carousel
 //  try using this library https://react-slick.neostack.com/docs/example/focus-on-select
-// 
+//  https://stackoverflow.com/questions/53538992/loading-dynamic-images-fetched-using-api-in-react-responsive-carousel-react
 //  
 // 

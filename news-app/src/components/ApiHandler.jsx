@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import CarouselPic from './CarouselPic';
 import NewsApp from './NewsApp';
 
 
@@ -8,6 +9,8 @@ function ApiHandler() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [results, setresults] = useState([]);
+    // the allArticles value takes in the api returns and concatenates them into one return so that they all render into one component instead of 2 separate components. 
+    const allArticles = results[0].articles.slice(0, 3).concat(results[1].articles.slice(0, 3));
 
     // the useEffect hook is telling react that the component needs to do something after render. In this case the Api call is made, data is recieved and then applied to the structure that we have set in our other component that creates the page itself. 
     useEffect(() => {
@@ -39,30 +42,39 @@ function ApiHandler() {
         return <div>Loading...</div>
     } else{
         return (
+
+            
             
             // So this is going to go through the results of the 2 api calls based off their index ([0] & [1] respectively). It's then gonna map the results 
             <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-3 gap-x-6 sm:grid-cols-1 bg-yellowochre pt-2 '>
                 
-                {results[0].articles.map((result, index) => (
-                    <NewsApp 
-                        key={index}
-                        title={result.title}
-                        url={result.url}
-                        image={result.image}
-                        creator={result.source.name}
-                        content={result.description}
-                    />
-                ))}
-                {results[1].articles.map((result, index) => (
-                    <NewsApp 
-                        key={index}
-                        title={result.title}
-                        creator={result.author}
-                        content={result.description}
-                        urlToImage={result.urlToImage}
-                        url={result.url}
-                    />
-                ))}
+                <div>
+                    <CarouselPic articles={allArticles} />
+                </div>
+                
+
+                
+                    {results[0].articles.map((result, index) => (
+                        <NewsApp
+                            key={index}
+                            title={result.title}
+                            url={result.url}
+                            image={result.image}
+                            creator={result.source.name}
+                            content={result.description}
+                        />
+                    ))}
+                    {results[1].articles.map((result, index) => (
+                        <NewsApp
+                            key={index}
+                            title={result.title}
+                            creator={result.author}
+                            content={result.description}
+                            urlToImage={result.urlToImage}
+                            url={result.url}
+                        />
+                    ))}
+                
             </div>
             
         )

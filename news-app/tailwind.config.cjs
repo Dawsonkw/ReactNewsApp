@@ -23,6 +23,7 @@ module.exports = {
         'yellowochre': '#E9C46A',
         'sand': '#F4A261',
         'cadmiumorange': '#E76F51',
+        'otterTeal': '#3cbcc0'
       },
     },
   },

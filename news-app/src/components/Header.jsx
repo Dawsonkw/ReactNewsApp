@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 import { AiFillGithub } from "react-icons/ai";
 import { AiFillInstagram } from "react-icons/ai";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faOtter } from '@fortawesome/free-solid-svg-icons'
 import Datetime from './Datetime';
 import '../assets/googlefonts.css'
 import Searchbar from './Searchbar';
 import '../App.css'
-
+import icon from '../assets/theOtter.png'
 
 
 
@@ -18,18 +16,19 @@ const Header = (search) => {
         setSearchValue(event.target.value);
     }
 
+    // <FontAwesomeIcon icon={faOtter}
 
     return (
         <div className='relative bg-cream'>
             <nav className='shadow-lg'>
-                <div className=' flex-shrink-0 inline-flex space-x-5'>
-                    <h1 className='text-8xl text-cadmiumorange pt-5'> <FontAwesomeIcon icon={faOtter} /></h1>
-                    <div>
+                <div className=' flex-shrink-0 inline-flex'>
+                     <img src={icon} alt="icon" className='' /> 
+                    <div className=''>
                         <div>
-                            <h1 className='text-5xl text-center pt-7  font-modak text-cadmiumorange'> The Otter </h1>
+                            <h1 className='text-6xl text-left pt-12 overflow-hidden  font-modak text-cadmiumorange'> The Otter </h1>
                         </div>
                         <div>
-                            <h1 className='text-4xl font-blackops text-gray-500'> MMA News App </h1>
+                            <h1 className='text-left text-5xl font-blackops text-otterTeal'> MMA News App </h1>
                         </div>
                     </div>
                 </div>
