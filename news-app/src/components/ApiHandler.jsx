@@ -4,7 +4,6 @@ import { useState } from 'react';
 import CarouselPic from './CarouselPic';
 import NewsApp from './NewsApp';
 
-
 function ApiHandler() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -44,7 +43,6 @@ function ApiHandler() {
         return (
             // So this is going to go through the results of the 2 api calls based off their index ([0] & [1] respectively). It's then gonna map the results 
             <div >
-                
                 <div className='w-3/4 h-auto mx-auto'>
                     <CarouselPic articles={allArticles} />
                 </div>
@@ -70,9 +68,7 @@ function ApiHandler() {
                             />
                         ))}
                     </div>
-                
             </div>
-            
         )
     }
 }

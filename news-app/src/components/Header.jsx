@@ -7,16 +7,11 @@ import Searchbar from './Searchbar';
 import '../App.css'
 import icon from '../assets/theOtter.png'
 
-
-
 const Header = (search) => {
     const [searchValue, setSearchValue] = useState('');
-
     const handleChange = (event) => {
         setSearchValue(event.target.value);
     }
-
-    // <FontAwesomeIcon icon={faOtter}
 
     return (
         <div className='relative bg-cream'>
@@ -32,7 +27,6 @@ const Header = (search) => {
                         </div>
                     </div>
                 </div>
-
                 <div className='flex justify-center'>
                     <ul className='inline-flex space-x-3'>
                         <li>
@@ -46,9 +40,8 @@ const Header = (search) => {
                         </li>
                     </ul>
                 </div>
-                <div className='border-t border-sand'>
-
-                </div>
+                    <div className='border-t border-sand'>
+                    </div>
                 <div className='flex justify-end'>
                     <Searchbar searchValue={searchValue} handleChange={handleChange} search={search}/>
                 </div>

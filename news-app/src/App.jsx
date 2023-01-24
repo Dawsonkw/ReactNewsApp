@@ -2,7 +2,7 @@ import './App.css'
 import ApiHandler from './components/ApiHandler'
 import Header from './components/Header'
 import NewsApp from './components/NewsApp'
-// import NewsCard from './components/NewsCard'
+import Footer from './components/Footer'
 
 function App() {
 
@@ -11,6 +11,7 @@ function App() {
       <Header />    
       <ApiHandler />
       <NewsApp />
+      <Footer />
     </div>
   )
 }

@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import NewsApp from "./NewsApp";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import { NextArrow, PrevArrow } from "./CustomArrows";
 
 const CarouselPic = (props) => {
     const settings = {
@@ -12,15 +11,12 @@ const CarouselPic = (props) => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        arrows: true,
-        
+        arrows: true,  
     }
 
-    
     return (
         <div className="p-8 mx-auto">
-            <Slider {...settings} NextArrow={<NextArrow />} PrevArrow={<PrevArrow />}>
-                
+            <Slider {...settings} >     
             {props.articles.map((article, index) => (
                 <NewsApp 
                     key={index}

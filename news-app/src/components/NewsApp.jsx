@@ -1,5 +1,4 @@
 import React from 'react';
-import CarouselPic from './CarouselPic';
 
 const NewsApp = (props) => {
     // The handleClick function is going to apply the onCLick feature to the card to open a separate 
@@ -8,15 +7,13 @@ const NewsApp = (props) => {
     }
 
     return (
-            <div className='bg-cream p-6 rounded-lg my-2 mx-2' onClick={handleClick}>
-                
-                {/* Conditionally renders the Image to the page if the image url exists */}
-                {props.image && <img src={props.image} className='w-full rounded-lg mb-4 relative p-4 bg-cream hover:scale-105 ' />}
-                {props.urlToImage && <img src={props.urlToImage} className='w-full rounded-lg mb-4 relative p-4 bg-cream hover:scale-100 duration-400 '/>}
-                <h2 className="text-2xl font-bold text-left p-4">{props.title}</h2>
-                <p className='underline text-left pb-2 text-black font-medium '> {'Source: ' +  props.creator}</p>
-                <p className=' text-black text-left '>{props.content}</p>
-            </div>
+        <div className='bg-cream p-6 rounded-lg my-2 mx-2' onClick={handleClick}>
+            {/* Conditionally renders the Image to the page if the image url exists */}
+            {props.image && <img src={props.image} className='w-full rounded-lg mb-4 relative p-4 bg-cream hover:scale-95 duration-400' />}
+            {props.urlToImage && <img src={props.urlToImage} className='w-full rounded-lg mb-4 relative p-4 bg-cream hover:scale-95 duration-400 '/>}
+            <h2 className="text-2xl font-bold text-left p-4">{props.title}</h2>
+            <p className=' text-black text-left '>{props.content}</p>  
+        </div> 
     );
 };
 
