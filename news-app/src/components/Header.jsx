@@ -20,12 +20,12 @@ const Header = (search) => {
 
     return (
         <div className='relative bg-cream'>
-            <nav className='shadow-lg'>
+            <nav className='shadow-xl'>
                 <div className=' flex-shrink-0 inline-flex'>
                      <img src={icon} alt="icon" className='' /> 
                     <div className=''>
                         <div>
-                            <h1 className='text-6xl text-left pt-12 overflow-hidden  font-modak text-cadmiumorange'> The Otter </h1>
+                            <h1 className='text-6xl text-left pt-12 overflow-hidden  font-modak text-sand'> The Otter </h1>
                         </div>
                         <div>
                             <h1 className='text-left text-5xl font-blackops text-otterTeal'> MMA News App </h1>
@@ -46,7 +46,7 @@ const Header = (search) => {
                         </li>
                     </ul>
                 </div>
-                <div className='border-t border-t-yellowochre'>
+                <div className='border-t border-sand'>
 
                 </div>
                 <div className='flex justify-end'>

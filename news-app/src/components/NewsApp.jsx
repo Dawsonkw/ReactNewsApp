@@ -12,10 +12,10 @@ const NewsApp = (props) => {
                 
                 {/* Conditionally renders the Image to the page if the image url exists */}
                 {props.image && <img src={props.image} className='w-full rounded-lg mb-4 relative p-4 bg-cream hover:scale-105 ' />}
-                {props.urlToImage && <img src={props.urlToImage} className='w-full rounded-lg mb-4 relative p-4 bg-cream hover:scale-105 duration-400 '/>}
+                {props.urlToImage && <img src={props.urlToImage} className='w-full rounded-lg mb-4 relative p-4 bg-cream hover:scale-100 duration-400 '/>}
                 <h2 className="text-2xl font-bold text-left p-4">{props.title}</h2>
-                <p className='underline text-left pb-2 text-gray-800 font-medium '>Source: {props.creator}</p>
-                <p className=' text-gray-800 text-left '>{props.content}</p>
+                <p className='underline text-left pb-2 text-black font-medium '> {'Source: ' +  props.creator}</p>
+                <p className=' text-black text-left '>{props.content}</p>
             </div>
     );
 };

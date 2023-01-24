@@ -10,7 +10,7 @@ const Searchbar = ({searchValue, handleChange}) => {
     }
 
     return (
-        <div className='bg-yellowochre py-2 flex items-center px-3 '>
+        <div className='bg-sand py-2 flex items-center px-3 '>
             <BsSearch className='text-coolgrey mr-4 text-xl' onClick={search}/>
             <input className='border-1 border-yellowochre px-4 py-2 w-full' type="text" placeholder='Search...' value={searchValue} onChange={handleChange} onKeyDown={(e) => {if(e.key === 'Enter') search()}} />
         </div>

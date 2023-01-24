@@ -9,13 +9,10 @@ function ApiHandler() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [results, setresults] = useState([]);
-    // the allArticles value takes in the api returns and concatenates them into one return so that they all render into one component instead of 2 separate components. 
-    const allArticles = results[0].articles.slice(0, 3).concat(results[1].articles.slice(0, 3));
-
     // the useEffect hook is telling react that the component needs to do something after render. In this case the Api call is made, data is recieved and then applied to the structure that we have set in our other component that creates the page itself. 
     useEffect(() => {
         const api1 = 'https://gnews.io/api/v4/top-headlines?token=b10afd6f87086db5fbb2457a2c296123&topic=sports&q=mma&lang=en'; //GNews.io API
-        const api2 = ' https://newsapi.org/v2/everything?q=mma&language=en&apiKey=2534edfeb2794486a6bab24956592237'; // newsAPI.org sports section
+        const api2 = ' https://newsapi.org/v2/everything?q=mma&language=en&pageSize=10&apiKey=2534edfeb2794486a6bab24956592237'; // newsAPI.org sports section
         const headers = {'Set-Cookie': 'cookie-name=cookie-value; SameSite=Strict;'} 
         const promises = [fetch(api1), fetch(api2)];
         Promise.all(promises)
@@ -40,40 +37,39 @@ function ApiHandler() {
         return <div>Error: {error.message}</div>
     } else if (!isLoaded) {
         return <div>Loading...</div>
-    } else{
+    } else if (results.length === 0) {
+        return <div>No results found</div>
+    } else{ const allArticles = results[0].articles.slice(0, 3).concat(results[1].articles.slice(0, 3));      
+        // the allArticles value takes in the api returns and concatenates them into one return so that they all render into one component instead of 2 separate components. It is called within the error block so that the page has a chance to render and doesn't break everything before it gets there. 
         return (
-
-            
-            
             // So this is going to go through the results of the 2 api calls based off their index ([0] & [1] respectively). It's then gonna map the results 
-            <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-3 gap-x-6 sm:grid-cols-1 bg-yellowochre pt-2 '>
+            <div >
                 
-                <div>
+                <div className='w-3/4 h-auto mx-auto'>
                     <CarouselPic articles={allArticles} />
                 </div>
-                
-
-                
-                    {results[0].articles.map((result, index) => (
-                        <NewsApp
-                            key={index}
-                            title={result.title}
-                            url={result.url}
-                            image={result.image}
-                            creator={result.source.name}
-                            content={result.description}
-                        />
-                    ))}
-                    {results[1].articles.map((result, index) => (
-                        <NewsApp
-                            key={index}
-                            title={result.title}
-                            creator={result.author}
-                            content={result.description}
-                            urlToImage={result.urlToImage}
-                            url={result.url}
-                        />
-                    ))}
+                    <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-3 gap-x-6 sm:grid-cols-1 bg-sand pt-2 '>
+                        {results[0].articles.map((result, index) => (
+                            <NewsApp
+                                key={index}
+                                title={result.title}
+                                url={result.url}
+                                image={result.image}
+                                creator={result.source.name}
+                                content={result.description}
+                            />
+                        ))}
+                        {results[1].articles.map((result, index) => (
+                            <NewsApp
+                                key={index}
+                                title={result.title}
+                                creator={result.author}
+                                content={result.description}
+                                urlToImage={result.urlToImage}
+                                url={result.url}
+                            />
+                        ))}
+                    </div>
                 
             </div>
             
